@@ -1,0 +1,32 @@
+*,
+::before,
+::after {
+	margin: 0;
+	padding: 0;
+}
+html {
+	font-size: 12px;
+}
+html,
+body {
+	box-sizing: border-box;
+}
+body {
+	min-height: 100%;
+	margin-top: 50px;
+	font-family: 'Poppins', sans-serif;
+}
+a,
+li {
+	text-decoration: none;
+	list-style: none;
+}
+li:hover,
+button {
+	cursor: pointer;
+}
+button {
+	border: none;
+	outline: none;
+	background: transparent;
+}
