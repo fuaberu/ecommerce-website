@@ -12,6 +12,7 @@ header {
 	left: 0;
 	right: 0;
 	max-width: 100%;
+	z-index: 5;
 	.navbar {
 		height: var(--header-size);
 		background-color: var(--secondary);
