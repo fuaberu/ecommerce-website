@@ -1,0 +1,45 @@
+
+
+.input-wrap {
+	width: 60vw;
+	max-width: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	position: relative;
+	margin-top: 16px;
+	margin-bottom: 25px;
+	input {
+		padding: 7px;
+		font-size: 16px;
+		border: none;
+		box-shadow: 0 0 15px 5px rgb(201, 201, 201);
+		border-radius: 5px;
+	}
+	label {
+		font-size: 13px;
+		color: #cccccc;
+		position: absolute;
+		pointer-events: none;
+		top: 9px;
+		left: 12px;
+		transition: all 0.2s ease;
+	}
+	input:focus ~ label,
+	input:not(:focus):valid ~ label {
+		top: -18px;
+		bottom: 0px;
+		left: 0px;
+		font-size: 14px;
+		opacity: 1;
+		color: var(--primary);
+	}
+}
+
+.submit-btn {
+	padding: 0.8rem 1.5rem;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	background-color: var(--primary);
+}
