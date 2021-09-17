@@ -10,11 +10,15 @@ const Header = (props) => {
 				<ul className="navbar-nav">
 					<NavItem icon={<i className="fas fa-bars"></i>}>
 						<DropdownMenu classType="dropdown">
-							<NavItem text="Products" to="/products" />
-							{!props.currentUser && <NavItem text="Sign In" to="/sign-in" />}
-							{!props.currentUser && <NavItem text="Sign Up" to="/sign-up" />}
+							<NavItemLink text="Products" to="/products" />
+							{!props.currentUser && (
+								<NavItemLink text="Sign In" to="/sign-in" />
+							)}
+							{!props.currentUser && (
+								<NavItemLink text="Sign Up" to="/sign-up" />
+							)}
 							{props.currentUser && (
-								<NavItem text="Sign Out" onClick={() => auth.signOut()} />
+								<NavItemLink text="Sign Out" onClick={() => auth.signOut()} />
 							)}
 							<NavItem text="Language" icon={<i className="fas fa-globe"></i>}>
 								<DropdownMenu classType="open-over">
@@ -25,7 +29,7 @@ const Header = (props) => {
 							</NavItem>
 						</DropdownMenu>
 					</NavItem>
-					<NavItem text="Fake Store" to="/" />
+					<NavItemLink text="Fake Store" to="/" />
 					<NavItem icon={<i className="fas fa-shopping-cart"></i>} to="/cart" />
 					<p className="logged-in">hello: nhuwndncnsi</p>
 				</ul>
@@ -39,17 +43,22 @@ const NavItem = ({ to, text, icon, children, ...otherProps }) => {
 
 	return (
 		<li className="nav-item" {...otherProps}>
-			{to ? (
-				<Link to={to}>
-					<span>{text}</span>
-				</Link>
-			) : (
-				<span>{text}</span>
-			)}
+			<span>{text}</span>
+
 			<span className="icon-button" onClick={() => setOpen(!open)}>
 				{icon}
 			</span>
 			{open && children}
+		</li>
+	);
+};
+
+const NavItemLink = ({ to, text }) => {
+	return (
+		<li className="nav-item">
+			<Link to={to}>
+				<span>{text}</span>
+			</Link>
 		</li>
 	);
 };

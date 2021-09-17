@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Layout from './Layout';
 import Homepage from './pages/Homepage/Homepage';
 import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
+import Products from './pages/Products/Products';
 import { auth, handleUserProfile } from './firebase/firebaseUtility';
 import './default.scss';
 
@@ -25,25 +25,57 @@ function App() {
 			setCurrentUser(userAuth);
 		});
 		return () => {
-			authListner()
-		}
+			authListner();
+		};
 	});
 
 	return (
 		<div className="App">
-			<Header currentUser={currentUser} />
 			<div className="main">
 				<Switch>
-					<Route exact path="/" component={Homepage} />
-					<Route path="/sign-in">
-						{currentUser ? <Redirect to="/" /> : <SignIn />}
-					</Route>
-					<Route path="/sign-up">
-						{currentUser ? <Redirect to="/" /> : <SignUp />}
-					</Route>
+					<Route
+						exact
+						path="/"
+						render={() => (
+							<Layout>
+								<Homepage />
+							</Layout>
+						)}
+					/>
+					<Route
+						path="/sign-in"
+						render={() =>
+							currentUser ? (
+								<Redirect to="/" />
+							) : (
+								<Layout>
+									<SignIn />
+								</Layout>
+							)
+						}
+					/>
+					<Route
+						path="/sign-up"
+						render={() =>
+							currentUser ? (
+								<Redirect to="/" />
+							) : (
+								<Layout>
+									<SignUp />
+								</Layout>
+							)
+						}
+					/>
+					<Route
+						path="/products"
+						render={() => (
+							<Layout>
+								<Products />
+							</Layout>
+						)}
+					/>
 				</Switch>
 			</div>
-			<Footer />
 		</div>
 	);
 }
