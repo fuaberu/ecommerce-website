@@ -1,31 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
 	SignInBtn,
 	FormInputLable,
-	SubmitBtn,
+	FormBtn,
 } from '../../components/small components/SmallComponents';
-import { Link } from 'react-router-dom';
+import { signInWithGoogle, auth } from '../../firebase/firebaseUtility';
+import './signIn.scss';
 
 const SignIn = () => {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	const resetForm = () => {
+		setEmail('');
+		setPassword('');
+	};
+
+	async function handleSubmit(e) {
+		e.preventDefault();
+		try {
+			await auth.signInWithEmailAndPassword(email, password);
+			resetForm();
+		} catch (error) {
+			console.log(error);
+		}
+	}
 	return (
-		<div className='main'>
+		<div className="sign-in-wraper">
 			<h1>Sign In</h1>
-			<form action="">
+			<form action="" onSubmit={handleSubmit}>
 				<FormInputLable
 					idFor="email"
 					idType="email"
 					labelText="Email Address"
+					onChange={(e) => setEmail(e.target.value)}
+					value={email}
+					labelClass={email !== '' ? 'label-up' : null}
 				/>
 				<FormInputLable
-					idFor="password"
+					idFor="current-password"
 					idType="password"
 					labelText="Password"
+					onChange={(e) => setPassword(e.target.value)}
+					autoComplete="current-password"
+					value={password}
+					labelClass={password !== '' ? 'label-up' : null}
 				/>
-				<SubmitBtn type="submit">Sign In</SubmitBtn>
+				<FormBtn type="submit" onClick={handleSubmit}>
+					Sign In
+				</FormBtn>
 			</form>
+
 			<h3>Or Sing In Using</h3>
 			<div className="other-logIn">
-				<SignInBtn icon="google" />
+				<SignInBtn icon="google" onClick={signInWithGoogle} />
 				<SignInBtn icon="twitter" />
 				<SignInBtn icon="facebook" />
 			</div>
@@ -33,7 +62,9 @@ const SignIn = () => {
 				<h3>New Customer?</h3>
 				<p>Please click on the button bellow to create an account</p>
 
-				<Link to="/sign-up">Create Account</Link>
+				<Link className="create-btn" to="/sign-up">
+					Create Account
+				</Link>
 			</div>
 		</div>
 	);

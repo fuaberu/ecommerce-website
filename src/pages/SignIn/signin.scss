@@ -1,8 +1,32 @@
-.main {
+.sign-in-wraper {
 	text-align: center;
-	padding-top: 5rem;
+	padding-top: 2rem;
 	form {
 		width: fit-content;
-		margin: auto;
+		margin: 0 auto 2rem auto;
+	}
+	.other-logIn {
+		display: flex;
+		width: 60vw;
+		max-width: 300px;
+		justify-content: space-evenly;
+		margin: 1rem auto;
+	}
+	.new-customer {
+		max-width: 300px;
+		margin: 3rem auto;
+		padding: 1rem;
+		background-color: rgb(221, 221, 221);
+		.create-btn {
+			padding: 0.8rem 1.5rem;
+			border: none;
+			border-radius: 5px;
+			color: white;
+			background-color: var(--primary);
+		}
+		h3,
+		p {
+			margin-bottom: 2rem;
+		}
 	}
 }

@@ -59,8 +59,14 @@ header {
 					flex-direction: column;
 				}
 			}
+			.logged-in {
+				position: absolute;
+				top: var(--header-size);
+				right: 0.5rem;
+			}
 		}
 	}
+	
 }
 @media screen and (min-width: 700px) {
 	.fa-bars {
