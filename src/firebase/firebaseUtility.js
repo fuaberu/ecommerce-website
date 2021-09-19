@@ -23,9 +23,6 @@ export const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
-// password sign In
-
-
 // users profiles
 export const handleUserProfile = async (usersAuth, additionalData) => {
 	if (!usersAuth) return;
@@ -35,6 +32,7 @@ export const handleUserProfile = async (usersAuth, additionalData) => {
 	const snapshot = await userRef.get();
 
 	if (!snapshot.exists) {
+		// if user do not exist
 		const { displayName, email } = usersAuth;
 		const time = new Date();
 		try {
@@ -50,3 +48,18 @@ export const handleUserProfile = async (usersAuth, additionalData) => {
 	}
 	return userRef;
 };
+
+// products database
+
+export const inventory = [];
+
+const handleDatabase = async () => {
+	const productData = await db.collection('products').get();
+	productData.forEach((doc) => {
+		let docData = doc.data();
+		docData.id = doc.id;
+		inventory.push(docData);
+		console.log(docData);
+	});
+};
+handleDatabase();
