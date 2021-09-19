@@ -51,7 +51,6 @@ const SignIn = () => {
 					Sign In
 				</FormBtn>
 			</form>
-
 			<h3>Or Sing In Using</h3>
 			<div className="other-logIn">
 				<SignInBtn icon="google" onClick={signInWithGoogle} />
@@ -60,7 +59,7 @@ const SignIn = () => {
 			</div>
 			<div className="new-customer">
 				<h3>New Customer?</h3>
-				<p>Please click on the button bellow to create an account</p>
+				<p>Click in the button below and create an account</p>
 
 				<Link className="create-btn" to="/sign-up">
 					Create Account
