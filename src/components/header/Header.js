@@ -1,24 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase/firebaseUtility';
+import { userInfo } from '../../App';
+import { auth } from '../../firebase/firebaseUtility';
 import './header.scss';
 
-const Header = (props) => {
+const Header = () => {
+	const [open, setOpen] = useState(false);
+	const userData = useContext(userInfo);
+
+	const handleMenu = () => {
+		setOpen(!open);
+	};
+
+	const signOut = async () => {
+		try {
+			await auth.signOut();
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	return (
 		<header>
 			<nav className="navbar">
 				<ul className="navbar-nav">
-					<NavItem icon={<i className="fas fa-bars"></i>}>
+					<NavItem
+						icon={<i className="fas fa-bars"></i>}
+						open={open}
+						onClick={() => handleMenu()}
+					>
 						<DropdownMenu classType="dropdown">
 							<NavItemLink text="Products" to="/products" />
-							{!props.currentUser && (
-								<NavItemLink text="Sign In" to="/sign-in" />
-							)}
-							{!props.currentUser && (
-								<NavItemLink text="Sign Up" to="/sign-up" />
-							)}
-							{props.currentUser && (
-								<NavItemLink text="Sign Out" onClick={() => auth.signOut()} />
+							{!userData && <NavItemLink text="Sign In" to="/sign-in" />}
+							{!userData && <NavItemLink text="Sign Up" to="/sign-up" />}
+							{userData && (
+								<NavItemLink text="Sign Out" to="/" onClick={signOut} />
 							)}
 							<NavItem text="Language" icon={<i className="fas fa-globe"></i>}>
 								<DropdownMenu classType="open-over">
@@ -31,31 +46,29 @@ const Header = (props) => {
 					</NavItem>
 					<NavItemLink text="Fake Store" to="/" />
 					<NavItem icon={<i className="fas fa-shopping-cart"></i>} to="/cart" />
-					<p className="logged-in">hello: nhuwndncnsi</p>
+					{userData && (
+						<p className="logged-in">hello: {userData.displayName}</p>
+					)}
 				</ul>
 			</nav>
 		</header>
 	);
 };
 
-const NavItem = ({ to, text, icon, children, ...otherProps }) => {
-	const [open, setOpen] = useState(false);
-
+const NavItem = ({ to, text, icon, children, open, ...otherProps }) => {
 	return (
 		<li className="nav-item" {...otherProps}>
 			<span>{text}</span>
 
-			<span className="icon-button" onClick={() => setOpen(!open)}>
-				{icon}
-			</span>
+			<span className="icon-button">{icon}</span>
 			{open && children}
 		</li>
 	);
 };
 
-const NavItemLink = ({ to, text }) => {
+const NavItemLink = ({ to, text, ...otherProps }) => {
 	return (
-		<li className="nav-item">
+		<li className="nav-item" {...otherProps}>
 			<Link to={to}>
 				<span>{text}</span>
 			</Link>
