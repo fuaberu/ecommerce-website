@@ -8,6 +8,8 @@ import Products from './pages/Products/Products';
 import { auth, handleUserProfile } from './firebase/firebaseUtility';
 import './default.scss';
 
+export const userInfo = React.createContext();
+
 function App() {
 	const [currentUser, setCurrentUser] = useState(null);
 
@@ -18,7 +20,7 @@ function App() {
 				userRef.onSnapshot((snap) => {
 					setCurrentUser({
 						id: snap.id,
-						...snap,
+						...snap.data(),
 					});
 				});
 			}
@@ -27,56 +29,58 @@ function App() {
 		return () => {
 			authListner();
 		};
-	});
+	}, []);
 
 	return (
-		<div className="App">
-			<div className="main">
-				<Switch>
-					<Route
-						exact
-						path="/"
-						render={() => (
-							<Layout>
-								<Homepage />
-							</Layout>
-						)}
-					/>
-					<Route
-						path="/sign-in"
-						render={() =>
-							currentUser ? (
-								<Redirect to="/" />
-							) : (
+		<userInfo.Provider value={currentUser}>
+			<div className="App">
+				<div className="main">
+					<Switch>
+						<Route
+							exact
+							path="/"
+							render={() => (
 								<Layout>
-									<SignIn />
+									<Homepage />
 								</Layout>
-							)
-						}
-					/>
-					<Route
-						path="/sign-up"
-						render={() =>
-							currentUser ? (
-								<Redirect to="/" />
-							) : (
+							)}
+						/>
+						<Route
+							path="/sign-in"
+							render={() =>
+								currentUser ? (
+									<Redirect to="/" />
+								) : (
+									<Layout>
+										<SignIn />
+									</Layout>
+								)
+							}
+						/>
+						<Route
+							path="/sign-up"
+							render={() =>
+								currentUser ? (
+									<Redirect to="/" />
+								) : (
+									<Layout>
+										<SignUp />
+									</Layout>
+								)
+							}
+						/>
+						<Route
+							path="/products"
+							render={() => (
 								<Layout>
-									<SignUp />
+									<Products />
 								</Layout>
-							)
-						}
-					/>
-					<Route
-						path="/products"
-						render={() => (
-							<Layout>
-								<Products />
-							</Layout>
-						)}
-					/>
-				</Switch>
+							)}
+						/>
+					</Switch>
+				</div>
 			</div>
-		</div>
+		</userInfo.Provider>
 	);
 }
 
