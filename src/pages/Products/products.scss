@@ -2,4 +2,11 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
     grid-gap: 0.5rem;
+    .filters {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        display: flex;
+        margin-top: 0.5rem;
+        justify-content: space-evenly;
+    }
 }

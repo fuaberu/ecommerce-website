@@ -1,0 +1,10 @@
+.filters-container {
+	select {
+		border: none;
+        background-color: #ecedef;
+        padding: 0.5rem 2rem;
+		&:hover {
+			border-bottom: 1px solid red;
+		}
+	}
+}

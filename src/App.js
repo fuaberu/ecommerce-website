@@ -70,7 +70,26 @@ function App() {
 							}
 						/>
 						<Route
+							exact
 							path="/products"
+							render={() => (
+								<Layout>
+									<Products />
+								</Layout>
+							)}
+						/>
+            <Route
+              exact
+							path="/products/:filterGender"
+							render={() => (
+								<Layout>
+									<Products />
+								</Layout>
+							)}
+						/>
+            <Route
+              exact
+							path="/products/:filterGender/:filterType"
 							render={() => (
 								<Layout>
 									<Products />
