@@ -59,7 +59,6 @@ const handleDatabase = async () => {
 		let docData = doc.data();
 		docData.id = doc.id;
 		inventory.push(docData);
-		console.log(docData);
 	});
 };
 handleDatabase();
