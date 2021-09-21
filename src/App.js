@@ -5,6 +5,7 @@ import Homepage from './pages/Homepage/Homepage';
 import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
 import Products from './pages/Products/Products';
+import ProductDetails from './pages/productDetails/ProductDetails';
 import { auth, handleUserProfile } from './firebase/firebaseUtility';
 import './default.scss';
 
@@ -93,6 +94,15 @@ function App() {
 							render={() => (
 								<Layout>
 									<Products />
+								</Layout>
+							)}
+						/>
+            <Route
+              exact
+							path="/product/:productID"
+							render={() => (
+								<Layout>
+									<ProductDetails />
 								</Layout>
 							)}
 						/>

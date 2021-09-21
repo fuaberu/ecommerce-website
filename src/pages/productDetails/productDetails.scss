@@ -1,0 +1,26 @@
+.product-detail-container {
+	padding: 5vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	img {
+		width: 90vw;
+		height: 90vw;
+		object-fit: cover;
+	}
+	.flex {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 80%;
+		margin: 1rem;
+		button {
+			padding: 0.8rem 1.5rem;
+			border: none;
+			border-radius: 5px;
+			color: white;
+			text-transform: uppercase;
+			background-color: var(--primary);
+		}
+	}
+}

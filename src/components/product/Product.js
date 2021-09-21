@@ -1,11 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './product.scss';
 
-const ProductContainer = ({ image, alt, displayName, price }) => {
+const ProductContainer = ({
+	image,
+	alt,
+	displayName,
+	price,
+	uid,
+}) => {
 	return (
 		<div className="product-wrapper">
-			<img src={image} alt={alt} />
-			<h4>{displayName}</h4>
+			<Link className='image-link' to={`/product/${uid}`}>
+				<img className='product-image' src={image} alt={alt} />
+			</Link>
+			<Link className='name-link' to={`/product/${uid}`}>
+				<h4 data-uid={uid}>{displayName}</h4>
+			</Link>
 			<p>{`$${price}`}</p>
 			<button>
 				<i className="fas fa-cart-plus"></i>
