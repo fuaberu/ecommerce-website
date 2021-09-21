@@ -16,23 +16,26 @@ const Products = () => {
 	const fetchData = async (type, gender) => {
 		const response = db.collection('products');
 		const data = await response.get();
+
 		setInventory([]);
 		data.docs.forEach((item) => {
-			if (gender === 'all' && !type) {
+			let data = item.data();
+			data.uid = item.id;
+			if (!gender && !type) {
 				//show all
-				setInventory((inventory) => [...inventory, item.data()]);
+				setInventory((inventory) => [...inventory, data]);
 			}
-			if (!gender && type === item.data().type) {
+			if (gender === 'all' && type === item.data().type) {
 				//show all gender with especific type
-				setInventory((inventory) => [...inventory, item.data()]);
+				setInventory((inventory) => [...inventory, data]);
 			}
 			if (!type && gender === item.data().gender) {
 				//show all type with especific gender
-				setInventory((inventory) => [...inventory, item.data()]);
+				setInventory((inventory) => [...inventory, data]);
 			}
 			if (type === item.data().type && gender === item.data().gender) {
 				//show especific type and gender
-				setInventory((inventory) => [...inventory, item.data()]);
+				setInventory((inventory) => [...inventory, data]);
 			}
 		});
 	};
@@ -48,7 +51,6 @@ const Products = () => {
 	const handleTypeFilter = (e) => {
 		const nextFilter = e.target.value;
 		const prevPath = pathname.split('/')[2];
-		console.log(pathname);
 		if (nextFilter === 'all') {
 			history.push(`/products`);
 		} else if (
@@ -116,6 +118,7 @@ const Products = () => {
 						displayName={product.displayName}
 						price={product.price}
 						key={index}
+						uid={product.uid}
 					/>
 				);
 			})}
