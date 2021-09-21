@@ -49,16 +49,3 @@ export const handleUserProfile = async (usersAuth, additionalData) => {
 	return userRef;
 };
 
-// products database
-
-export const inventory = [];
-
-const handleDatabase = async () => {
-	const productData = await db.collection('products').get();
-	productData.forEach((doc) => {
-		let docData = doc.data();
-		docData.id = doc.id;
-		inventory.push(docData);
-	});
-};
-handleDatabase();
