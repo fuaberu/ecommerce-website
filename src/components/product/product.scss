@@ -7,12 +7,16 @@
 		'price btn';
 	align-items: center;
 	padding: 1rem;
-	img {
-		width: 100%;
-		aspect-ratio: 1;
+	.image-link {
 		grid-area: img;
+		width: 100%;
+		height: fit-content;
+		img {
+			width: 100%;
+			aspect-ratio: 1;
+		}
 	}
-	h4 {
+	.name-link {
 		grid-area: display;
 	}
 	p {
@@ -20,6 +24,6 @@
 	}
 	button {
 		grid-area: btn;
-        text-align: end;
+		text-align: end;
 	}
 }
