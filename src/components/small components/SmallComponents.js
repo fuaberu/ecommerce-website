@@ -4,7 +4,7 @@ import './smallComponents.scss';
 const SignInBtn = ({ icon, ...otherProps }) => {
 	return (
 		<button className="sign-in-btn" {...otherProps}>
-			<i className={`fab fa-${icon}`}></i>
+			<i className={`${icon}`}></i>
 		</button>
 	);
 };

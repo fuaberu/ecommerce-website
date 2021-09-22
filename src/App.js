@@ -8,11 +8,26 @@ import Products from './pages/Products/Products';
 import ProductDetails from './pages/productDetails/ProductDetails';
 import { auth, handleUserProfile } from './firebase/firebaseUtility';
 import './default.scss';
+import Cart from './pages/cart/Cart';
+import Checkout from './pages/checkout/Checkout';
 
 export const userInfo = React.createContext();
+export const myCart = React.createContext();
 
 function App() {
 	const [currentUser, setCurrentUser] = useState(null);
+	const [cart, setCart] = useState({});
+	const [totalItems, setTotalItems] = useState(0);
+
+	const itemsQuantity = () => {
+		setTotalItems(0)
+		Object.keys(cart).forEach((key) => {
+			setTotalItems((prev) => prev + cart[key].quantity);
+		});
+	};
+	useEffect(() => {
+		itemsQuantity();
+	}, [cart]);
 
 	useEffect(() => {
 		const authListner = auth.onAuthStateChanged(async (userAuth) => {
@@ -34,81 +49,103 @@ function App() {
 
 	return (
 		<userInfo.Provider value={currentUser}>
-			<div className="App">
-				<div className="main">
-					<Switch>
-						<Route
-							exact
-							path="/"
-							render={() => (
-								<Layout>
-									<Homepage />
-								</Layout>
-							)}
-						/>
-						<Route
-							path="/sign-in"
-							render={() =>
-								currentUser ? (
-									<Redirect to="/" />
-								) : (
+			<myCart.Provider
+				value={{ set: setCart, value: cart, totalItems: totalItems }}
+			>
+				<div className="App">
+					<div className="main">
+						<Switch>
+							<Route
+								exact
+								path="/"
+								render={() => (
 									<Layout>
-										<SignIn />
+										<Homepage />
 									</Layout>
-								)
-							}
-						/>
-						<Route
-							path="/sign-up"
-							render={() =>
-								currentUser ? (
-									<Redirect to="/" />
-								) : (
+								)}
+							/>
+							<Route
+								path="/sign-in"
+								render={() =>
+									currentUser ? (
+										<Redirect to="/" />
+									) : (
+										<Layout>
+											<SignIn />
+										</Layout>
+									)
+								}
+							/>
+							<Route
+								path="/sign-up"
+								render={() =>
+									currentUser ? (
+										<Redirect to="/" />
+									) : (
+										<Layout>
+											<SignUp />
+										</Layout>
+									)
+								}
+							/>
+							<Route
+								exact
+								path="/products"
+								render={() => (
 									<Layout>
-										<SignUp />
+										<Products />
 									</Layout>
-								)
-							}
-						/>
-						<Route
-							exact
-							path="/products"
-							render={() => (
-								<Layout>
-									<Products />
-								</Layout>
-							)}
-						/>
-            <Route
-              exact
-							path="/products/:filterGender"
-							render={() => (
-								<Layout>
-									<Products />
-								</Layout>
-							)}
-						/>
-            <Route
-              exact
-							path="/products/:filterGender/:filterType"
-							render={() => (
-								<Layout>
-									<Products />
-								</Layout>
-							)}
-						/>
-            <Route
-              exact
-							path="/product/:productID"
-							render={() => (
-								<Layout>
-									<ProductDetails />
-								</Layout>
-							)}
-						/>
-					</Switch>
+								)}
+							/>
+							<Route
+								exact
+								path="/products/:filterGender"
+								render={() => (
+									<Layout>
+										<Products />
+									</Layout>
+								)}
+							/>
+							<Route
+								exact
+								path="/products/:filterGender/:filterType"
+								render={() => (
+									<Layout>
+										<Products />
+									</Layout>
+								)}
+							/>
+							<Route
+								exact
+								path="/product/:productID"
+								render={() => (
+									<Layout>
+										<ProductDetails />
+									</Layout>
+								)}
+							/>
+							<Route
+								exact
+								path="/cart"
+								render={() => (
+									<Layout>
+										<Cart />
+									</Layout>
+								)}
+							/>
+							<Route
+								exact
+								path="/checkout"
+								render={() => (
+									<Layout>
+										<Checkout />
+									</Layout>
+								)}
+							/>
+						</Switch>
+					</div>
 				</div>
-			</div>
+			</myCart.Provider>
 		</userInfo.Provider>
 	);
 }

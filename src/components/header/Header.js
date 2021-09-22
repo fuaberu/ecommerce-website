@@ -1,12 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { userInfo } from '../../App';
+import { myCart } from '../../App';
 import { auth } from '../../firebase/firebaseUtility';
 import './header.scss';
 
 const Header = () => {
 	const [open, setOpen] = useState(false);
 	const userData = useContext(userInfo);
+	const totalItems = useContext(myCart).totalItems;
 
 	const handleMenu = () => {
 		setOpen(!open);
@@ -45,7 +47,11 @@ const Header = () => {
 						</DropdownMenu>
 					</NavItem>
 					<NavItemLink text="Fake Store" to="/" />
-					<NavItem icon={<i className="fas fa-shopping-cart"></i>} to="/cart" />
+					<NavItemLink
+						icon={<i className="fas fa-shopping-cart"></i>}
+						to="/cart"
+						text={totalItems ? `(${totalItems})` : null}
+					/>
 					{userData && (
 						<p className="logged-in">hello: {userData.displayName}</p>
 					)}
@@ -55,7 +61,7 @@ const Header = () => {
 	);
 };
 
-const NavItem = ({ to, text, icon, children, open, ...otherProps }) => {
+const NavItem = ({ text, icon, children, open, ...otherProps }) => {
 	return (
 		<li className="nav-item" {...otherProps}>
 			<span>{text}</span>
@@ -66,10 +72,11 @@ const NavItem = ({ to, text, icon, children, open, ...otherProps }) => {
 	);
 };
 
-const NavItemLink = ({ to, text, ...otherProps }) => {
+const NavItemLink = ({ to, text, icon, ...otherProps }) => {
 	return (
 		<li className="nav-item" {...otherProps}>
 			<Link to={to}>
+				<span className="icon-button">{icon}</span>
 				<span>{text}</span>
 			</Link>
 		</li>

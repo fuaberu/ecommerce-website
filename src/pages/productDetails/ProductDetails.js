@@ -15,7 +15,7 @@ const ProductDetails = () => {
 	};
 	useEffect(() => {
 		fetchData(productID);
-	}, []);
+	}, [productID]);
 	return (
 		<main className="product-detail-container">
 			<h1>{state.displayName}</h1>

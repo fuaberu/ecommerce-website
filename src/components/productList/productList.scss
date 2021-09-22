@@ -1,0 +1,14 @@
+.list-item {
+	display: grid;
+	grid-template-columns: 1fr 1.5fr;
+    align-items: center;
+	grid-template-rows: 20vw;
+    margin: 2rem 0;
+	img {
+		width: 20vw;
+		height: 20vw;
+	}
+    a {
+        margin: auto;
+    }
+}
