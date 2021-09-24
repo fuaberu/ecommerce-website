@@ -95,7 +95,7 @@ const Products = () => {
 	];
 
 	return (
-		<div className="products-main">
+		<main className="products-main">
 			<div className="filters">
 				<ProductFilter
 					title="gender"
@@ -122,7 +122,7 @@ const Products = () => {
 					/>
 				);
 			})}
-		</div>
+		</main>
 	);
 };
 

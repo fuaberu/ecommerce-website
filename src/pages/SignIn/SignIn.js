@@ -27,7 +27,7 @@ const SignIn = () => {
 		}
 	}
 	return (
-		<div className="sign-in-wraper">
+		<main className="sign-in-wraper">
 			<h1>Sign In</h1>
 			<form action="" onSubmit={handleSubmit}>
 				<FormInputLable
@@ -53,9 +53,9 @@ const SignIn = () => {
 			</form>
 			<h3>Or Sing In Using</h3>
 			<div className="other-logIn">
-				<SignInBtn icon="google" onClick={signInWithGoogle} />
-				<SignInBtn icon="twitter" />
-				<SignInBtn icon="facebook" />
+				<SignInBtn icon="fab fa-google" onClick={signInWithGoogle} />
+				<SignInBtn icon="fab fa-twitter" />
+				<SignInBtn icon="fab fa-facebook" />
 			</div>
 			<div className="new-customer">
 				<h3>New Customer?</h3>
@@ -65,7 +65,7 @@ const SignIn = () => {
 					Create Account
 				</Link>
 			</div>
-		</div>
+		</main>
 	);
 };
 

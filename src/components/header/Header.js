@@ -53,7 +53,7 @@ const Header = () => {
 						text={totalItems ? `(${totalItems})` : null}
 					/>
 					{userData && (
-						<p className="logged-in">hello: {userData.displayName}</p>
+						<p className="logged-in">Wellcome: {userData.displayName}</p>
 					)}
 				</ul>
 			</nav>

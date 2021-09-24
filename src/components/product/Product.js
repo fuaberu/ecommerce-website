@@ -20,9 +20,9 @@ const ProductContainer = (props) => {
 					image: image,
 					price: price,
 					quantity: cart[uid].quantity + 1,
+					keyId: uid,
 				},
 			});
-			console.log(cart, 'if');
 		} else {
 			setCart({
 				...cart,
@@ -32,9 +32,9 @@ const ProductContainer = (props) => {
 					image: image,
 					price: price,
 					quantity: 1,
+					keyId: uid,
 				},
 			});
-			console.log(cart, 'else');
 		}
 	};
 	return (

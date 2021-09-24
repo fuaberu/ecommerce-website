@@ -23,9 +23,12 @@ const SignUp = () => {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		if (password !== confirmPassword) return
+		if (password !== confirmPassword) return;
 		try {
-			const { user } = await auth.createUserWithEmailAndPassword(email, password);
+			const { user } = await auth.createUserWithEmailAndPassword(
+				email,
+				password
+			);
 			await handleUserProfile(user, `${firstName} ${lastName}`);
 			resetForm();
 		} catch (error) {
@@ -33,7 +36,7 @@ const SignUp = () => {
 		}
 	}
 	return (
-		<div className="sign-un-wraper">
+		<main className="sign-un-wraper">
 			<h1>New Account</h1>
 			<form action="" onSubmit={handleSubmit}>
 				<FormInputLable
@@ -79,7 +82,7 @@ const SignUp = () => {
 				/>
 				<FormBtn type="submit">Create Account</FormBtn>
 			</form>
-		</div>
+		</main>
 	);
 };
 
