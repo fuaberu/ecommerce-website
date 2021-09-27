@@ -1,5 +1,4 @@
 import React from 'react';
-import { SignInBtn } from '../small components/SmallComponents';
 import './productList.scss';
 
 const ProductList = (props) => {
