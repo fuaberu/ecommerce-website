@@ -1,0 +1,13 @@
+.homepage {
+	min-height: calc(100vh - var(--header-size));
+	position: absolute;
+	width: 100vw;
+	background-size: cover;
+	background-position: 68%;
+	background-repeat: no-repeat;
+	text-align: center;
+	h1 {
+        font-size: 3rem;
+		margin: 2rem;
+	}
+}

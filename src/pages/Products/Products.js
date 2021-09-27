@@ -51,12 +51,13 @@ const Products = () => {
 	const handleTypeFilter = (e) => {
 		const nextFilter = e.target.value;
 		const prevPath = pathname.split('/')[2];
-		if (nextFilter === 'all') {
-			history.push(`/products`);
+		if (nextFilter === '') {
+			history.push('/products');
 		} else if (
 			prevPath === '' ||
 			prevPath === 'shoes' ||
 			prevPath === 'shirts' ||
+			prevPath === 'pants' ||
 			!prevPath
 		) {
 			history.push(`/products/all/${nextFilter}`);
@@ -92,6 +93,10 @@ const Products = () => {
 			name: 'Shirts',
 			value: 'shirts',
 		},
+		{
+			name: 'Pants',
+			value: 'pants',
+		},
 	];
 
 	return (
@@ -110,18 +115,20 @@ const Products = () => {
 					defaultValue={filterType || ''}
 				/>
 			</div>
-			{inventory.map((product, index) => {
-				return (
-					<ProductContainer
-						image={product.image}
-						alt={product.alt}
-						displayName={product.displayName}
-						price={product.price}
-						key={index}
-						uid={product.uid}
-					/>
-				);
-			})}
+			<div className="products-display">
+				{inventory.map((product, index) => {
+					return (
+						<ProductContainer
+							image={product.image}
+							alt={product.alt}
+							displayName={product.displayName}
+							price={product.price}
+							key={index}
+							uid={product.uid}
+						/>
+					);
+				})}
+			</div>
 		</main>
 	);
 };

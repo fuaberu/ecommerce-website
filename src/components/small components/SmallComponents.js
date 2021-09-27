@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './smallComponents.scss';
 
 const SignInBtn = ({ icon, ...otherProps }) => {
@@ -46,4 +47,12 @@ const FormBtn = ({ children, type }) => {
 	);
 };
 
-export { SignInBtn, FormInputLable, FormBtn };
+const LinkBtn = ({ text,to }) => {
+	return (
+		<Link className="submit-btn" to={to}>
+			{text}
+		</Link>
+	);
+};
+
+export { SignInBtn, FormInputLable, FormBtn, LinkBtn };
