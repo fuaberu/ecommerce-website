@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { userInfo } from '../../App';
 import { myCart } from '../../App';
@@ -21,6 +21,17 @@ const Header = () => {
 			console.log(error);
 		}
 	};
+
+	const changeHeader = () => {
+		if (window.innerWidth > 700) {
+			setOpen(true)
+		}
+	}
+
+	useEffect(() => {
+		changeHeader();
+	});
+
 	return (
 		<header>
 			<nav className="navbar">
@@ -29,6 +40,7 @@ const Header = () => {
 						icon={<i className="fas fa-bars"></i>}
 						open={open}
 						onClick={() => handleMenu()}
+						id='burger-menu'
 					>
 						<DropdownMenu classType="dropdown">
 							<NavItemLink text="Products" to="/products" />
@@ -37,23 +49,23 @@ const Header = () => {
 							{userData && (
 								<NavItemLink text="Sign Out" to="/" onClick={signOut} />
 							)}
-							<NavItem text="Language" icon={<i className="fas fa-globe"></i>}>
-								<DropdownMenu classType="open-over">
-									<DropDownItem>English</DropDownItem>
-									<DropDownItem>Japanse</DropDownItem>
-									<DropDownItem>Portuguese</DropDownItem>
-								</DropdownMenu>
-							</NavItem>
 						</DropdownMenu>
 					</NavItem>
-					<NavItemLink text="Fake Store" to="/" />
+					<NavItemLink
+						text="Fake Store"
+						to="/"
+						onClick={() => setOpen(false)}
+						id='store-name'
+					/>
 					<NavItemLink
 						icon={<i className="fas fa-shopping-cart"></i>}
 						to="/cart"
 						text={totalItems ? `(${totalItems})` : null}
+						onClick={() => setOpen(false)}
+						id='shop-link'
 					/>
 					{userData && (
-						<p className="logged-in">Wellcome: {userData.displayName}</p>
+						<p className="logged-in">Welcome: {userData.displayName}</p>
 					)}
 				</ul>
 			</nav>
@@ -87,11 +99,4 @@ const DropdownMenu = (props) => {
 	return <ul className={props.classType}>{props.children}</ul>;
 };
 
-const DropDownItem = (props) => {
-	return (
-		<span href="#" className="menu-item">
-			{props.children}
-		</span>
-	);
-};
 export default Header;
