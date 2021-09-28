@@ -112,10 +112,10 @@ const Cart = () => {
 			<div className="flex">
 				<p>
 					{itemsCount > 1 || itemsCount === 0
-						? `total: (${itemsCount} items)`
-						: `total: (${itemsCount} item)`}
+						? `Total: (${itemsCount} items)`
+						: `Total: (${itemsCount} item)`}
 				</p>
-				<p>{`$${total.toFixed(2)}`}</p>
+				<p id='total'>{`$${total.toFixed(2)}`}</p>
 			</div>
 			<div className="items">
 				{Object.keys(cartItems).map((key) => {
@@ -145,7 +145,7 @@ const Cart = () => {
 					</PayPalScriptProvider>
 				</div>
 			) : null}
-			<Link className="cart-btn" to="/products">
+			<Link className="cart-btn" to="/products" >
 				continue shopping
 			</Link>
 		</main>
