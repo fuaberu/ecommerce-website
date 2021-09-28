@@ -79,6 +79,34 @@ const Cart = () => {
 		return itemsArray;
 	};
 
+	// creates a paypal order
+	const createOrder = (data, actions) => {
+		return actions.order
+			.create({
+				purchase_units: [
+					{
+						amount: {
+							value: total.toFixed(2).toString(),
+							breakdown: {
+								item_total: {
+									currency_code: 'USD',
+									value: total.toFixed(2).toString(),
+								},
+							},
+						},
+						items: setCartArray(),
+					},
+				],
+			})
+	};
+
+	const onApprove = (data, actions) => {
+		return actions.order.capture().then(function (details) {
+			const { payer } = details;
+			alert(`Thank you for the buying with us ${payer}`)
+		});
+	};
+
 	return (
 		<main className="cart-container">
 			<h1>Your cart</h1>
@@ -107,33 +135,17 @@ const Cart = () => {
 					);
 				})}
 			</div>
-			{itemsCount > 0? (
+			{itemsCount > 0 ? (
 				<div className="paypal-container">
 					<PayPalScriptProvider options={initialOptions}>
 						<PayPalButtons
 							style={{ layout: 'horizontal' }}
-							createOrder={(actions) => {
-								return actions.order.create({
-									purchase_units: [
-										{
-											amount: {
-												value: total.toFixed(2).toString(),
-												breakdown: {
-													item_total: {
-														currency_code: 'USD',
-														value: total.toFixed(2).toString(),
-													},
-												},
-											},
-											items: setCartArray(),
-										},
-									],
-								});
-							}}
+							createOrder={createOrder}
+							onApprove={onApprove}
 						/>
 					</PayPalScriptProvider>
 				</div>
-			): null}
+			) : null}
 			<Link className="cart-btn" to="/products">
 				continue shopping
 			</Link>
