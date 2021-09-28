@@ -26,7 +26,6 @@ function App() {
 	};
 	useEffect(() => {
 		itemsQuantity();
-		console.log(cart, 'cart');
 	}, [cart]);
 
 	useEffect(() => {

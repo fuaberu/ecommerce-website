@@ -2,7 +2,7 @@
 	--primary: #fc9003;
 	--primary-light: #ffa734;
 	--footerSize: 2.5rem;
-	--header-size: 3.5rem;
+	--header-size: 3rem;
 }
 
 *,
@@ -25,6 +25,7 @@ body {
 }
 a,
 li {
+	font-size: 0.8rem;
 	text-decoration: none;
 	list-style: none;
 }
@@ -43,6 +44,10 @@ button {
 	padding-bottom: var(--footerSize);
 }
 
+.fas {
+	font-size: 1rem;
+}
+
 @media screen and (min-width: 700px) {
 	html {
 		font-size: 16px;
@@ -55,6 +60,6 @@ button {
 }
 @media screen and (min-width: 1400px) {
 	html {
-		font-size: 24px;
+		font-size: 22px;
 	}
 }

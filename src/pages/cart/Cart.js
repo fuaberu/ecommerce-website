@@ -54,7 +54,6 @@ const Cart = () => {
 				},
 			});
 		}
-		console.log(e.target.dataset.uid, e.target.id);
 	};
 
 	const initialOptions = {

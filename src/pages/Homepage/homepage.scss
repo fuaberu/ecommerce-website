@@ -7,7 +7,11 @@
 	background-repeat: no-repeat;
 	text-align: center;
 	h1 {
-        font-size: 3rem;
+		text-transform: uppercase;
+		font-weight: 700;
+		color: white;
+		font-size: 3rem;
 		margin: 2rem;
+		text-shadow: 1px 1px var(--primary), 2px 2px var(--primary), 3px 3px #fe4902;
 	}
 }

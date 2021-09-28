@@ -10,30 +10,40 @@ header {
 	top: 0;
 	left: 0;
 	right: 0;
-	max-width: 100%;
+	width: 100%;
 	z-index: 5;
-	color: var(--primary);
 	font-size: 1rem;
-	a {
-		color: var(--primary);
+	a,
+	.fas {
+		color: white;
 		user-select: none;
+	}
+	#store-name {
+		span {
+			color: var(--primary);
+			font-size: 1.3rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			
+		}
 	}
 	.navbar {
 		height: var(--header-size);
-		min-height: 50px;
 		background-color: var(--secondary);
 		position: relative;
 		.navbar-nav {
-			max-width: 100%;
+			max-width: 1200px;
 			height: 100%;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+			margin: auto;
 			span {
-				margin: 0 5px;
+				font-size: 1rem;
 			}
 			#store-name {
 				font-size: 1.5rem;
+				width: fit-content;
 			}
 			.nav-item {
 				position: relative;
@@ -44,8 +54,11 @@ header {
 				.dropdown {
 					user-select: none;
 					display: flex;
+					align-items: center;
 					li {
-						width: fit-content;
+						a {
+							text-align: center;
+						}
 					}
 				}
 			}
@@ -58,20 +71,25 @@ header {
 	}
 }
 @media screen and (max-width: 699px) {
-	.nav-item {
-		.dropdown {
-			background-color: var(--primary);
-			position: absolute;
-			top: var(--header-size);
-			left: 0;
-			width: 40vw;
-			max-width: 200px;
-			height: 100vh;
-			padding: 1rem;
-			flex-direction: column;
-			.nav-item,
-			a {
-				color: black;
+	.navbar-nav {
+		#shop-link,
+		#burger-menu {
+			width: 3rem;
+		}
+		.nav-item {
+			.dropdown {
+				background-color: var(--primary);
+				position: absolute;
+				top: var(--header-size);
+				left: 0;
+				width: 30vw;
+				height: 100vh;
+				padding: 1rem;
+				flex-direction: column;
+				.nav-item,
+				a {
+					color: black;
+				}
 			}
 		}
 	}
@@ -82,6 +100,12 @@ header {
 	}
 	.navbar-nav {
 		justify-content: end;
+		li {
+			margin: 1rem;
+		}
+		.dropdown li:last-child {
+			margin-right: 0;
+		}
 	}
 	#store-name {
 		order: 1;

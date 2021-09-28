@@ -54,8 +54,6 @@ const SignIn = () => {
 			<h3>Or Sing In Using</h3>
 			<div className="other-logIn">
 				<SignInBtn icon="fab fa-google" onClick={signInWithGoogle} />
-				<SignInBtn icon="fab fa-twitter" />
-				<SignInBtn icon="fab fa-facebook" />
 			</div>
 			<div className="new-customer">
 				<h3>New Customer?</h3>

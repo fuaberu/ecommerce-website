@@ -1,4 +1,4 @@
-import React, { useState, useContext,useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { userInfo } from '../../App';
 import { myCart } from '../../App';
@@ -24,9 +24,9 @@ const Header = () => {
 
 	const changeHeader = () => {
 		if (window.innerWidth > 700) {
-			setOpen(true)
+			setOpen(true);
 		}
-	}
+	};
 
 	useEffect(() => {
 		changeHeader();
@@ -40,7 +40,7 @@ const Header = () => {
 						icon={<i className="fas fa-bars"></i>}
 						open={open}
 						onClick={() => handleMenu()}
-						id='burger-menu'
+						id="burger-menu"
 					>
 						<DropdownMenu classType="dropdown">
 							<NavItemLink text="Products" to="/products" />
@@ -55,14 +55,14 @@ const Header = () => {
 						text="Fake Store"
 						to="/"
 						onClick={() => setOpen(false)}
-						id='store-name'
+						id="store-name"
 					/>
 					<NavItemLink
 						icon={<i className="fas fa-shopping-cart"></i>}
 						to="/cart"
 						text={totalItems ? `(${totalItems})` : null}
 						onClick={() => setOpen(false)}
-						id='shop-link'
+						id="shop-link"
 					/>
 					{userData && (
 						<p className="logged-in">Welcome: {userData.displayName}</p>
@@ -77,7 +77,6 @@ const NavItem = ({ text, icon, children, open, ...otherProps }) => {
 	return (
 		<li className="nav-item" {...otherProps}>
 			<span>{text}</span>
-
 			<span className="icon-button">{icon}</span>
 			{open && children}
 		</li>
@@ -88,7 +87,7 @@ const NavItemLink = ({ to, text, icon, ...otherProps }) => {
 	return (
 		<li className="nav-item" {...otherProps}>
 			<Link to={to}>
-				<span className="icon-button">{icon}</span>
+				{icon && <span className="icon-button">{icon}</span>}
 				<span>{text}</span>
 			</Link>
 		</li>
