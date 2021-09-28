@@ -3,10 +3,12 @@ import { useHistory, useLocation, useParams } from 'react-router';
 import ProductContainer from '../../components/product/Product';
 import ProductFilter from '../../components/small components/ProductFilter';
 import { db } from '../../firebase/firebaseUtility';
+import Spinner from '../../components/small components/Spinner';
 import './products.scss';
 
 const Products = () => {
 	const [inventory, setInventory] = useState([]);
+	const [showContent, setShowContent] = useState(false);
 
 	const history = useHistory();
 	const { filterGender } = useParams();
@@ -14,6 +16,7 @@ const Products = () => {
 	const { pathname } = useLocation();
 
 	const fetchData = async (type, gender) => {
+		setShowContent(false);
 		const response = db.collection('products');
 		const data = await response.get();
 
@@ -38,6 +41,7 @@ const Products = () => {
 				setInventory((inventory) => [...inventory, data]);
 			}
 		});
+		setShowContent(true);
 	};
 	useEffect(() => {
 		fetchData(filterType, filterGender);
@@ -115,20 +119,23 @@ const Products = () => {
 					defaultValue={filterType || ''}
 				/>
 			</div>
-			<div className="products-display">
-				{inventory.map((product, index) => {
-					return (
-						<ProductContainer
-							image={product.image}
-							alt={product.alt}
-							displayName={product.displayName}
-							price={product.price}
-							key={index}
-							uid={product.uid}
-						/>
-					);
-				})}
-			</div>
+			{!showContent && <Spinner />}
+			{showContent && (
+				<div className="products-display">
+					{inventory.map((product, index) => {
+						return (
+							<ProductContainer
+								image={product.image}
+								alt={product.alt}
+								displayName={product.displayName}
+								price={product.price}
+								key={index}
+								uid={product.uid}
+							/>
+						);
+					})}
+				</div>
+			)}
 		</main>
 	);
 };

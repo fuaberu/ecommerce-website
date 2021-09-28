@@ -76,7 +76,7 @@ const Cart = () => {
 				},
 			});
 		});
-		return itemsArray
+		return itemsArray;
 	};
 
 	return (
@@ -107,31 +107,33 @@ const Cart = () => {
 					);
 				})}
 			</div>
-			<div className="paypal-container">
-				<PayPalScriptProvider options={initialOptions}>
-					<PayPalButtons
-						style={{ layout: 'horizontal' }}
-						createOrder={(data, actions) => {
-							return actions.order.create({
-								purchase_units: [
-									{
-										amount: {
-											value: total.toFixed(2).toString(),
-											breakdown: {
-												item_total: {
-													currency_code: 'USD',
-													value: total.toFixed(2).toString(),
+			{itemsCount > 0? (
+				<div className="paypal-container">
+					<PayPalScriptProvider options={initialOptions}>
+						<PayPalButtons
+							style={{ layout: 'horizontal' }}
+							createOrder={(actions) => {
+								return actions.order.create({
+									purchase_units: [
+										{
+											amount: {
+												value: total.toFixed(2).toString(),
+												breakdown: {
+													item_total: {
+														currency_code: 'USD',
+														value: total.toFixed(2).toString(),
+													},
 												},
 											},
+											items: setCartArray(),
 										},
-										items: setCartArray(),
-									},
-								],
-							});
-						}}
-					/>
-				</PayPalScriptProvider>
-			</div>
+									],
+								});
+							}}
+						/>
+					</PayPalScriptProvider>
+				</div>
+			): null}
 			<Link className="cart-btn" to="/products">
 				continue shopping
 			</Link>
