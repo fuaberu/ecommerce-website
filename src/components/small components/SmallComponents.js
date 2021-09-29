@@ -34,7 +34,7 @@ const FormInputLable = ({
 			<label className={labelClass} htmlFor={idFor}>
 				{labelText}
 			</label>
-			<p className='error-message'>{errMessage}</p>
+			<p className="error-message">{errMessage}</p>
 		</div>
 	);
 };
@@ -47,11 +47,13 @@ const FormBtn = ({ children, type }) => {
 	);
 };
 
-const LinkBtn = ({ text,to }) => {
+const LinkBtn = ({ text, to }) => {
 	return (
-		<Link className="submit-btn" to={to}>
-			{text}
-		</Link>
+		<button className="submit-btn">
+			<Link  to={to}>
+				{text}
+			</Link>
+		</button>
 	);
 };
 

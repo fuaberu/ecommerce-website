@@ -13,13 +13,21 @@
 			font-weight: 700;
 		}
 	}
-	a {
+	.continue {
 		padding: 0.8rem 1.5rem;
 		text-transform: uppercase;
 		border: none;
 		border-radius: 5px;
 		color: white;
 		background-color: var(--primary);
+		&:hover,
+		&:active {
+			transform: scale(1.1);
+			box-shadow: 0 5px 15px #ffa734;
+		}
+		a:visited {
+			color: white;
+		}
 	}
 	.paypal-container {
 		position: relative;

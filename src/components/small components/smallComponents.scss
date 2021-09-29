@@ -54,8 +54,13 @@
 	background-color: var(--primary);
 	font-size: 0.8rem;
 	font-family: 'Poppins', sans-serif;
+	transition: all 0.2s ease-in-out;
 	&:hover,
 	&:active {
-		background-color: #ffa734;
+		transform: scale(1.1);
+		box-shadow: 0 5px 15px #ffa734;
+	}
+	a:visited {
+		color: white;
 	}
 }

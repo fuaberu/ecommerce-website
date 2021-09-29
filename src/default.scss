@@ -1,6 +1,7 @@
 * {
 	--primary: #fc9003;
 	--primary-light: #ffa734;
+	--secondary: rgb(28, 28, 28);
 	--footerSize: 2.5rem;
 	--header-size: 3rem;
 }
@@ -28,15 +29,23 @@ li {
 	font-size: 0.8rem;
 	text-decoration: none;
 	list-style: none;
+	user-select: none;
 }
 li:hover,
 button {
 	cursor: pointer;
 }
+a,
+button,
+li {
+	-webkit-tap-highlight-color: transparent;
+}
 button {
 	border: none;
 	outline: none;
 	background: transparent;
+	transition: all 0.2s ease-in-out;
+	user-select: none;
 }
 .main {
 	min-height: calc(100vh - var(--footerSize) - var(--header-size));
@@ -46,6 +55,21 @@ button {
 
 .fas {
 	font-size: 1rem;
+}
+
+// scrollbars
+::-webkit-scrollbar {
+	height: 8px;
+	width: 10px;
+}
+::-webkit-scrollbar-thumb:vertical {
+	background: rgb(75, 75, 75);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+	background: rgb(75, 75, 75);
+	border-radius: 10px;
 }
 
 @media screen and (min-width: 700px) {
