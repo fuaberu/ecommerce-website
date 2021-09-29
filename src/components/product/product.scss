@@ -6,13 +6,19 @@
 		'display display'
 		'price btn';
 	align-items: center;
+	overflow: hidden;
+	box-shadow: 0 0 7px 1px var(--secondary);
+	padding: 0.5rem;
+	border-radius: 5px;
 	.image-link {
 		grid-area: img;
-		width: 100%;
-		height: fit-content;
+		height: 35vw;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		img {
-			width: 100%;
-			aspect-ratio: 1;
+			max-height: 100%;
+			max-width: 100%;
 		}
 	}
 	.name-link {
@@ -27,5 +33,14 @@
 	}
 	h4 {
 		color: #fc9003;
+		text-transform: capitalize;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	.product-wrapper {
+		.image-link {
+			height: 20vw;
+		}
 	}
 }

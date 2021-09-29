@@ -80,29 +80,28 @@ const Cart = () => {
 
 	// creates a paypal order
 	const createOrder = (data, actions) => {
-		return actions.order
-			.create({
-				purchase_units: [
-					{
-						amount: {
-							value: total.toFixed(2).toString(),
-							breakdown: {
-								item_total: {
-									currency_code: 'USD',
-									value: total.toFixed(2).toString(),
-								},
+		return actions.order.create({
+			purchase_units: [
+				{
+					amount: {
+						value: total.toFixed(2).toString(),
+						breakdown: {
+							item_total: {
+								currency_code: 'USD',
+								value: total.toFixed(2).toString(),
 							},
 						},
-						items: setCartArray(),
 					},
-				],
-			})
+					items: setCartArray(),
+				},
+			],
+		});
 	};
 
 	const onApprove = (data, actions) => {
 		return actions.order.capture().then(function (details) {
 			const { payer } = details;
-			alert(`Thank you for the buying with us ${payer}`)
+			alert(`Thank you for the buying with us ${payer}`);
 		});
 	};
 
@@ -115,7 +114,7 @@ const Cart = () => {
 						? `Total: (${itemsCount} items)`
 						: `Total: (${itemsCount} item)`}
 				</p>
-				<p id='total'>{`$${total.toFixed(2)}`}</p>
+				<p id="total">{`$${total.toFixed(2)}`}</p>
 			</div>
 			<div className="items">
 				{Object.keys(cartItems).map((key) => {
@@ -145,9 +144,11 @@ const Cart = () => {
 					</PayPalScriptProvider>
 				</div>
 			) : null}
-			<Link className="cart-btn" to="/products" >
-				continue shopping
-			</Link>
+			<button className='continue'>
+				<Link className="cart-btn" to="/products">
+					continue shopping
+				</Link>
+			</button>
 		</main>
 	);
 };
