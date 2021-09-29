@@ -6,6 +6,7 @@ import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
 import Products from './pages/Products/Products';
 import ProductDetails from './pages/productDetails/ProductDetails';
+import NoMatch from './pages/404/NoMatch';
 import { auth, handleUserProfile } from './firebase/firebaseUtility';
 import './default.scss';
 import Cart from './pages/cart/Cart';
@@ -129,6 +130,15 @@ function App() {
 									render={() => (
 										<Layout>
 											<Cart />
+										</Layout>
+									)}
+								/>
+								<Route
+									exact
+									path="*"
+									render={() => (
+										<Layout>
+											<NoMatch />
 										</Layout>
 									)}
 								/>
