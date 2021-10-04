@@ -1,6 +1,6 @@
 # ECommerce website
 
-ECommerce website is an application design to be an ecommerce website ro sell any product in the web.
+ECommerce website is an application design to be an ecommerce website to sell any product in the web.
 
 The website can be accessed through [this link](https://my-ecommerce-3ce47.web.app/).
 
