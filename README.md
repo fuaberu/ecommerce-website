@@ -1,8 +1,10 @@
-# ECommerce website
+# Fake Store
 
-ECommerce website is an application design to be an ecommerce website to sell any product in the web.
+Fake Store website is an application design to be an ecommerce website to sell any product in the web.
 
 The website can be accessed through [this link](https://my-ecommerce-3ce47.web.app/).
+
+![Fake Store screenshot](https://github.com/fuaberu/my-portfolio/blob/3485346a3dc38558c313d1d0d402c62e8ea0e32d/src/assets/eCommerce.png)
 
 Features
 --------
